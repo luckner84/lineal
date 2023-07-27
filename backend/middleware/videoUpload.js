@@ -1,6 +1,6 @@
 const { diskStorage } = require('multer')
 const multer=require('multer')
-const uid =require('uuid')
+const uid= require('uuid')
 const HttpError=require('../utils/http-error')
 const MIME_TYPE_FILE={
     'video/mp4':'mp4',
