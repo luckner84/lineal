@@ -69,8 +69,7 @@ export const getVideo=()=>{
         try {
             const config={
                 headers:{
-                    'Content-Type':'application/json',
-                    Authorization: 'Bearer '+ JSON.parse(localStorage.getItem('adminInfo'))
+                    'Content-Type':'application/json'
                 }
             }
             const {data}=await axios.get('/api/videos/get-video',config)

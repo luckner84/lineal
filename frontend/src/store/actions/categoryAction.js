@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ADD_CATEGORY_SUCCESS, CATEGORY_DETAIL, CATEGORY_DETAIL_FAILED, CATEGORY_REQUEST, CLEAR_ERROR, CLEAR_SUCCESS, COUNT_CATEGORY, COUNT_CATEGORY_FAILED, DELETE_CATEGORY, DELETE_CATEGORY_FAILED, EDIT_CATEGORY_FAILED, EDIT_CATEGORY_SUCCESS, EDIT_IMAGE_CATEGORY, EDIT_IMAGE_CATEGORY_FAILED, GET_CATEGORY, GET_CATEGORY_FAILED } from '../constants/categoryConstants'
+import { ADD_CATEGORY_SUCCESS, CATEGORY_DETAIL, CATEGORY_DETAIL_FAILED, CATEGORY_REQUEST, CLEAR_ERROR, CLEAR_SUCCESS, COUNT_CATEGORY, COUNT_CATEGORY_FAILED, DELETE_CATEGORY, DELETE_CATEGORY_FAILED, EDIT_CATEGORY_FAILED, EDIT_CATEGORY_SUCCESS, EDIT_IMAGE_CATEGORY, EDIT_IMAGE_CATEGORY_FAILED, GET_CATEGORY, GET_CATEGORY_FAILED, USER_GET_CATEGORY, USER_GET_CATEGORY_FAILED } from '../constants/categoryConstants'
 
 export const AddCategory=(categoryInfo)=>{
 
@@ -90,6 +90,45 @@ export const getCategory=()=>{
            
             dispatch({
                 type:GET_CATEGORY_FAILED,
+                payload:{
+                  error:error.response.data.message
+                }
+          })
+
+         
+        }
+}}
+
+
+export const userGetCategory=()=>{
+
+    return async(dispatch)=>{
+
+       
+
+        try {
+            const config={
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            }
+            const {data}=await axios.get('/api/categories/user-get-category',config)
+          
+              
+           
+                dispatch({
+                    type:USER_GET_CATEGORY,
+                    payload:{
+                        category:data
+                    }
+              })
+            
+            setTimeout(()=>{ dispatch({type: CATEGORY_REQUEST})},1000)
+        
+        } catch (error) {
+           
+            dispatch({
+                type:USER_GET_CATEGORY_FAILED,
                 payload:{
                   error:error.response.data.message
                 }

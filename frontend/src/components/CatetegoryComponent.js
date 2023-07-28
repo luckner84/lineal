@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCategory } from '../store/actions/categoryAction'
+import {userGetCategory } from '../store/actions/categoryAction'
 import { Link } from 'react-router-dom'
 
 const CatetegoryComponent = () => {
@@ -8,7 +8,7 @@ const CatetegoryComponent = () => {
     const {category}=useSelector(state=>state.categories)
 
     useEffect(()=>{
-       dispatch(getCategory())
+       dispatch(userGetCategory())
     },[dispatch])
   return (
     

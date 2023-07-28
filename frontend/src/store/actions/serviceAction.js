@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ADD_SERVICE_SUCCESS, SERVICE_REQUEST ,CLEAR_SUCCESS,CLEAR_ERROR, GET_SERVICE, GET_SERVICE_FAILED, SERVICE_DETAIL, SERVICE_DETAIL_FAILED, EDIT_SERVICE_SUCCESS, EDIT_SERVICE_FAILED, DELETE_SERVICE, DELETE_SERVICE_FAILED, EDIT_IMAGE_SERVICE, EDIT_IMAGE_SERVICE_FAILED, SERVICE_BY_CATEGORY, SERVICE_BY_CATEGORY_FAILED} from '../constants/servicesConstants'
+import { ADD_SERVICE_SUCCESS, SERVICE_REQUEST ,CLEAR_SUCCESS,CLEAR_ERROR, GET_SERVICE, GET_SERVICE_FAILED, SERVICE_DETAIL, SERVICE_DETAIL_FAILED, EDIT_SERVICE_SUCCESS, EDIT_SERVICE_FAILED, DELETE_SERVICE, DELETE_SERVICE_FAILED, EDIT_IMAGE_SERVICE, EDIT_IMAGE_SERVICE_FAILED, SERVICE_BY_CATEGORY, SERVICE_BY_CATEGORY_FAILED, USER_GET_SERVICE, USER_GET_SERVICE_FAILED} from '../constants/servicesConstants'
 
 export const AddService=(serviceInfo)=>{
 
@@ -309,6 +309,45 @@ export const deleteService=(id)=>{
 
 
 
+
+
+export const userGetService=()=>{
+
+    return async(dispatch)=>{
+
+       
+
+        try {
+            const config={
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            }
+            const {data}=await axios.get(`/api/services/user-get-service`,config)
+
+        
+            setTimeout(()=>{  dispatch({type: SERVICE_REQUEST})},2000)
+                dispatch({
+                    type:USER_GET_SERVICE,
+                    payload:{
+                        service:data
+                    }
+              })
+            
+           
+        
+        } catch (error) {
+           
+            dispatch({
+                type:USER_GET_SERVICE_FAILED,
+                payload:{
+                  error:error.response.data.message
+                }
+          })
+
+         
+        }
+}}
 
 export const getServiceByCategory=(slug)=>{
 

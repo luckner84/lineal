@@ -1,5 +1,5 @@
 
-import {CLEAR_ERROR,CLEAR_SUCCESS ,ADD_SERVICE_FAILED, ADD_SERVICE_SUCCESS, DELETE_SERVICE, DELETE_SERVICE_FAILED, EDIT_SERVICE_FAILED, EDIT_SERVICE_SUCCESS, GET_SERVICE, GET_SERVICE_FAILED, SERVICE_REQUEST, EDIT_IMAGE_SERVICE, EDIT_IMAGE_SERVICE_FAILED, SERVICE_BY_CATEGORY, SERVICE_BY_CATEGORY_FAILED } from "../constants/servicesConstants"
+import {CLEAR_ERROR,CLEAR_SUCCESS ,ADD_SERVICE_FAILED, ADD_SERVICE_SUCCESS, DELETE_SERVICE, DELETE_SERVICE_FAILED, EDIT_SERVICE_FAILED, EDIT_SERVICE_SUCCESS, GET_SERVICE, GET_SERVICE_FAILED, SERVICE_REQUEST, EDIT_IMAGE_SERVICE, EDIT_IMAGE_SERVICE_FAILED, SERVICE_BY_CATEGORY, SERVICE_BY_CATEGORY_FAILED, USER_GET_SERVICE, USER_GET_SERVICE_FAILED } from "../constants/servicesConstants"
 
 
 const initialState={
@@ -69,6 +69,13 @@ export const serviceReducer=(state=initialState, action)=>{
          loading:true
         }
 
+        case USER_GET_SERVICE:
+            return{
+             ...state,
+             service:payload.service,
+             loading:true
+            }
+
         case SERVICE_BY_CATEGORY:
         return{
          ...state,
@@ -92,6 +99,14 @@ export const serviceReducer=(state=initialState, action)=>{
                 loading:false,
                 error: payload.error
             }
+
+            case USER_GET_SERVICE_FAILED:
+                return{
+                    ...state,
+                    service:'',
+                    loading:false,
+                    error: payload.error
+                }
 
             case SERVICE_BY_CATEGORY_FAILED:
             return{

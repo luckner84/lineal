@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ADD_COMPANY_REQUEST, ADD_COMPANY_SUCCESS, CLEAR_ERROR, CLEAR_SUCCESS, COMPANY_DETAIL, COMPANY_DETAIL_FAILED, COMPANY_REQUEST, DELETE_COMPANY, DELETE_COMPANY_FAILED, EDIT_COMPANY_FAILED, EDIT_COMPANY_SUCCESS, EDIT_IMAGE_COMPANY, EDIT_IMAGE_COMPANY_FAILED, GET_COMPANY, GET_COMPANY_FAILED } from '../constants/companyConstant'
+import { ADD_COMPANY_REQUEST, ADD_COMPANY_SUCCESS, CLEAR_ERROR, CLEAR_SUCCESS, COMPANY_DETAIL, COMPANY_DETAIL_FAILED, COMPANY_REQUEST, DELETE_COMPANY, DELETE_COMPANY_FAILED, EDIT_COMPANY_FAILED, EDIT_COMPANY_SUCCESS, EDIT_IMAGE_COMPANY, EDIT_IMAGE_COMPANY_FAILED, GET_COMPANY, GET_COMPANY_FAILED, USER_GET_COMPANY, USER_GET_COMPANY_FAILED } from '../constants/companyConstant'
 
 export const AddCompany=(companyInfo)=>{
 
@@ -90,6 +90,46 @@ export const getCompany=()=>{
            
             dispatch({
                 type:GET_COMPANY_FAILED,
+                payload:{
+                  error:error.response.data.message
+                }
+          })
+
+         
+        }
+}}
+
+
+
+export const userGetCompany=()=>{
+
+    return async(dispatch)=>{
+
+       
+
+        try {
+            const config={
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            }
+            const {data}=await axios.get('/api/companies/user-get-company',config)
+          
+            
+           
+                dispatch({
+                    type:USER_GET_COMPANY,
+                    payload:{
+                        company:data
+                    }
+              })
+            
+           
+        
+        } catch (error) {
+           
+            dispatch({
+                type:USER_GET_COMPANY_FAILED,
                 payload:{
                   error:error.response.data.message
                 }

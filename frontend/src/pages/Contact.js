@@ -4,8 +4,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import Header from '../UI/Header'
 import '../utils/contact.css'
 import {useSelector,useDispatch} from 'react-redux'
-import { getService } from '../store/actions/serviceAction'
-import { getCompany } from '../store/actions/companyAction'
+import {userGetCompany } from '../store/actions/companyAction'
 import { useAlert } from 'react-alert'
 import MetaData from '../components/MetaData'
 import SpinLoader from '../UI/SpinLoader'
@@ -90,11 +89,9 @@ const Contact = () => {
 
 	 
 
+
 	useEffect(()=>{
-		dispatch(getService())
-	},[dispatch])
-	useEffect(()=>{
-		dispatch(getCompany())
+		dispatch(userGetCompany())
 	},[dispatch])
   return (
    <Fragment>

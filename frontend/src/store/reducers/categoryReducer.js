@@ -1,4 +1,4 @@
-import { ADD_CATEGORY_FAILED, ADD_CATEGORY_SUCCESS, CATEGORY_REQUEST, CLEAR_ERROR, CLEAR_SUCCESS, DELETE_CATEGORY, DELETE_CATEGORY_FAILED, EDIT_CATEGORY_FAILED, EDIT_CATEGORY_SUCCESS, EDIT_IMAGE_CATEGORY, EDIT_IMAGE_CATEGORY_FAILED, GET_CATEGORY, GET_CATEGORY_FAILED } from "../constants/categoryConstants"
+import { ADD_CATEGORY_FAILED, ADD_CATEGORY_SUCCESS, CATEGORY_REQUEST, CLEAR_ERROR, CLEAR_SUCCESS, DELETE_CATEGORY, DELETE_CATEGORY_FAILED, EDIT_CATEGORY_FAILED, EDIT_CATEGORY_SUCCESS, EDIT_IMAGE_CATEGORY, EDIT_IMAGE_CATEGORY_FAILED, GET_CATEGORY, GET_CATEGORY_FAILED, USER_GET_CATEGORY, USER_GET_CATEGORY_FAILED } from "../constants/categoryConstants"
 
 
 const initialState={
@@ -64,9 +64,16 @@ export const categoryReducer=(state=initialState, action)=>{
      case GET_CATEGORY:
         return{
          ...state,
-         category:payload.category
+         category:payload.category,
+         loading:true
         }
 
+        case USER_GET_CATEGORY:
+            return{
+             ...state,
+             category:payload.category,
+             loading:true
+            }
         
     
     case DELETE_CATEGORY:
@@ -84,6 +91,14 @@ export const categoryReducer=(state=initialState, action)=>{
                 loading:false,
                 error: payload.error
             }
+
+            case USER_GET_CATEGORY_FAILED:
+                return{
+                    ...state,
+                    category:[],
+                    loading:false,
+                    error: payload.error
+                }
             case DELETE_CATEGORY_FAILED:
                 return{
                     ...state,

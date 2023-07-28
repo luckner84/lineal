@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect } from 'react'
 import {Link, NavLink, useLocation} from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
-import { getCompany } from '../store/actions/companyAction'
-import { getCategory } from '../store/actions/categoryAction'
+import {userGetCompany } from '../store/actions/companyAction'
+import {userGetCategory } from '../store/actions/categoryAction'
 import { useState } from 'react'
 
 const Header = () => {
@@ -12,11 +12,11 @@ const Header = () => {
 	const dispatch=useDispatch()
     const [items,setItems]=useState([])
 	useEffect(()=>{
-		dispatch(getCategory())
+		dispatch(userGetCategory())
 	},[dispatch])
 
 	useEffect(()=>{
-		dispatch(getCompany())
+		dispatch(userGetCompany())
 	},[dispatch])
 	useEffect(()=>{
 		
