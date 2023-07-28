@@ -1,5 +1,5 @@
 const {} = require('../controllers/CompanyController')
-const { newService, getService, readOne, editService, editServiceImage, deleteService, userGetService, userReadOne, userGetServiceByCatefory, editImageService } = require('../controllers/ServiceController')
+const { newService, getService, readOne, editService, deleteService, userGetService, userReadOne, userGetServiceByCatefory, editImageService } = require('../controllers/ServiceController')
 const {verifyIsUserIsLoggedIn}=require('../middleware/authentication')
 const router=require('express').Router()
 const fileUpload=require('../middleware/fileUpload')
