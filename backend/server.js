@@ -80,6 +80,8 @@ const server=app.listen(process.env.PORT,()=>{
     
   
   })
+
+ app.get("/",(req,res)=>{res.json("Hello")})
   app.use(express.static(path.resolve(__dirname, 'frontend', 'build')));
 app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'),function (err) {
