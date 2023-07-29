@@ -77,9 +77,9 @@ const server=app.listen(process.env.PORT,()=>{
   
   })
 
-app.get("/",(req,res)=>{
-  res.json("Hello")
-})
+ app.get("/",(req,res)=>{
+    res.send("Hello")
+  })
   
   process.on('unhandledRejection',(err)=>{
   console.log(`ERROR: ${err.message}`)
