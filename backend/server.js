@@ -72,7 +72,12 @@ databaseConnection()
 const server=app.listen(process.env.PORT,()=>{
 
  
-    console.log(`server is running at port number ${process.env.PORT} `)
+  if (process.env.NODE_ENV==="development"){
+    console.log(`server is running at port number ${process.env.PORT} `," in development mode")
+   }else{
+    console.log(`server is running at port number ${process.env.PORT} `," in production mode")
+   
+   }
    
    
     
