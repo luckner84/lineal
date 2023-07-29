@@ -65,22 +65,22 @@ app.use((error,req,res,next)=>{
 
 
 
+
 const databaseConnection=require('./config/db')
 databaseConnection()
 
-const server=app.listen(process.env.PORT,()=>{
+const server=app.listen(process.env.PORT,()=>{console.log(`server is running at port number ${process.env.PORT} `)})
+
+  app.use(express.static(path.resolve(__dirname, 'frontend', 'build')));
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'),function (err) {
+        if(err) {
+            res.status(500).send(err)
+        }
+    });
+})
 
  
-    console.log(`server is running at port number ${process.env.PORT} `," in production mode")
-   
-    
-  
-  })
-
- app.get("/",(req,res)=>{
-    res.send("Hello")
-  })
-  
   process.on('unhandledRejection',(err)=>{
   console.log(`ERROR: ${err.message}`)
   console.log("Shutting down the server due to Unhandled Promise rejection")
