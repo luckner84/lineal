@@ -4,11 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "post-build": "npm install --prefix ../frontend",
-    "server": "nodemon server.js",
+    "post-build": "npm install && npm build --prefix ../frontend ",
+    "server": "node server.js",
     "client": "npm start --prefix ../frontend",
-    "dev": "SET NODE_ENV=development& concurrently \" npm run server\" \"npm run client\"",
-    "prod": "SET NODE_ENV=production& concurrently \" npm run server\" \"npm run client\""
+    "dev": "NODE_ENV=development& concurrently \" npm run server\" \"npm run client\"",
+    "prod": "NODE_ENV=production& concurrently \" npm run server\" \"npm run post-build\""
   },
   "keywords": [],
   "author": "",
