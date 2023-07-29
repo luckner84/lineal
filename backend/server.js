@@ -69,8 +69,17 @@ app.use((error,req,res,next)=>{
 const databaseConnection=require('./config/db')
 databaseConnection()
 
-const server=app.listen(process.env.PORT,()=>{console.log(`server is running at port number ${process.env.PORT} `)})
+const server=app.listen(process.env.PORT,()=>{
 
+   if (process.env.NODE_ENV==="development"){
+    console.log(`server is running at port number ${process.env.PORT} `," in development mode")
+   }else{
+    console.log(`server is running at port number ${process.env.PORT} `," in production mode")
+   
+   }
+    
+  
+  })
   app.use(express.static(path.resolve(__dirname, 'frontend', 'build')));
 app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'),function (err) {
