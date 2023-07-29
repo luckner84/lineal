@@ -70,15 +70,16 @@ databaseConnection()
 
 const server=app.listen(process.env.PORT,()=>{
 
-   if (process.env.NODE_ENV==="development"){
-     
-   }else{
+ 
     console.log(`server is running at port number ${process.env.PORT} `," in production mode")
    
-   }
     
   
   })
+
+app.get("/",(req,res)=>{
+  res.json("Hello")
+})
   
   process.on('unhandledRejection',(err)=>{
   console.log(`ERROR: ${err.message}`)
